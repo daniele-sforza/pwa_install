@@ -1,7 +1,8 @@
-library pwa_install;
+library;
 
 import 'package:flutter/foundation.dart';
-import 'package:pwa_install/js_stub.dart' if (dart.library.js) 'package:js/js.dart';
+import 'package:pwa_install/js_stub.dart'
+    if (dart.library.js_interop) 'dart:js_interop';
 
 /// Functions that are called from JavaScript
 /// Three parts:
@@ -10,11 +11,8 @@ import 'package:pwa_install/js_stub.dart' if (dart.library.js) 'package:js/js.da
 /// 3. The actual Dart function
 ///
 /// Function that gets called from JavaScript code if app was launched as a PWA
-@JS("appLaunchedAsPWA")
-external set _appLaunchedAsPWA(void Function() f);
-
 @JS()
-external void appLaunchedAsPWA();
+external set appLaunchedAsPWA(JSFunction f);
 
 void setLaunchModePWA() {
   debugPrint('Launched as PWA');
@@ -22,11 +20,8 @@ void setLaunchModePWA() {
 }
 
 /// Function that gets called from JavaScript code if app was launched as a TWA
-@JS("appLaunchedAsTWA")
-external set _appLaunchedAsTWA(void Function() f);
-
 @JS()
-external void appLaunchedAsTWA();
+external set appLaunchedAsTWA(JSFunction f);
 
 void setLaunchModeTWA() {
   debugPrint('Launched as TWA');
@@ -35,7 +30,7 @@ void setLaunchModeTWA() {
 
 /// Function that gets called from JavaScript when a install prompt has been detected
 @JS("hasPrompt")
-external set _hasPrompt(void Function() f);
+external set _hasPrompt(JSFunction f);
 
 @JS()
 external void hasPrompt();
@@ -46,18 +41,12 @@ void setHasPrompt() {
 }
 
 /// Function that gets called from JavaScript when the app is installed as a PWA
-@JS("appInstalled")
-external set _appInstalled(void Function() f);
-
 @JS()
-external void appInstalled();
+external set appInstalled(JSFunction f);
 
 /// Function that gets called from JavaScript code if app was launched from a browser
-@JS("appLaunchedInBrowser")
-external set _appLaunchedInBrowser(void Function() f);
-
 @JS()
-external void appLaunchedInBrowser();
+external set appLaunchedInBrowser(JSFunction f);
 
 void setLaunchModeBrowser() {
   debugPrint('Launched in Browser');
@@ -98,7 +87,8 @@ class PWAInstall {
   /// installPromptEnabled will be true if the app was not already launched as a PWA or TWA and
   /// the browser prompted the user to install the app already. The browser needs to have presented the
   /// prompt because we are capturing that event and reusing it
-  bool get installPromptEnabled => hasPrompt && launchMode != LaunchMode.pwa && launchMode != LaunchMode.twa;
+  bool get installPromptEnabled =>
+      hasPrompt && launchMode != LaunchMode.pwa && launchMode != LaunchMode.twa;
 
   void getLaunchMode_() => getLaunchMode();
 
@@ -114,16 +104,15 @@ class PWAInstall {
     if (!kIsWeb) return;
 
     // JavaScript code may now call `appLaunchedAsPWA()` or `window.appLaunchedAsPWA()`.
-    _appLaunchedAsPWA = allowInterop(setLaunchModePWA);
+    appLaunchedAsPWA = setLaunchModePWA.toJS;
     // JavaScript code may now call `appLaunchedInBrowser()` or `window.appLaunchedInBrowser()`.
-    _appLaunchedInBrowser = allowInterop(setLaunchModeBrowser);
+    appLaunchedInBrowser = setLaunchModeBrowser.toJS;
     // JavaScript code may now call `appLaunchedAsTWA()` or `window.appLaunchedAsTWA()`.
-    _appLaunchedAsTWA = allowInterop(setLaunchModeTWA);
-
-    _hasPrompt = allowInterop(setHasPrompt);
-    _appInstalled = allowInterop(() {
+    appLaunchedAsTWA = setLaunchModeTWA.toJS;
+    _hasPrompt = setHasPrompt.toJS;
+    appInstalled = () {
       if (onAppInstalled != null) onAppInstalled!();
-    });
+    }.toJS;
     getLaunchMode_();
     onAppInstalled = installCallback;
   }

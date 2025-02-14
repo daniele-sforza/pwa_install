@@ -12,6 +12,8 @@ Future<void> main() async {
 }
 
 class App extends StatelessWidget {
+  const App({super.key});
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -22,41 +24,41 @@ class App extends StatelessWidget {
 }
 
 class HomeView extends StatefulWidget {
-  const HomeView({Key? key}) : super(key: key);
+  const HomeView({super.key});
 
   @override
   State<HomeView> createState() => _HomeViewState();
 }
 
 class _HomeViewState extends State<HomeView> {
-
   String? error;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         body: Center(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              const Text('Version: 6'),
-              Text('Launch Mode: ${PWAInstall().launchMode?.shortLabel}'),
-              Text('Has Install Prompt: ${PWAInstall().hasPrompt}'),
-              if(PWAInstall().installPromptEnabled) ElevatedButton(
-                  onPressed: () {
-                    try {
-                      PWAInstall().promptInstall_();
-                    } catch (e) {
-                      setState(() {
-                        error = e.toString();
-                      });
-                    }
-                  },
-                  child: const Text('Install')),
-              if (error != null) Text(error!)
-            ],
-          ),
-        ));
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          const Text('Version: 6'),
+          Text('Launch Mode: ${PWAInstall().launchMode?.shortLabel}'),
+          Text('Has Install Prompt: ${PWAInstall().hasPrompt}'),
+          if (PWAInstall().installPromptEnabled)
+            ElevatedButton(
+                onPressed: () {
+                  try {
+                    PWAInstall().promptInstall_();
+                  } catch (e) {
+                    setState(() {
+                      error = e.toString();
+                    });
+                  }
+                },
+                child: const Text('Install')),
+          if (error != null) Text(error!)
+        ],
+      ),
+    ));
   }
 }

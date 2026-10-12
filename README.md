@@ -31,6 +31,8 @@ Add the following `<script>` tag to the body of web/index.html:
 
     window.addEventListener('beforeinstallprompt', (e) => {
       deferredPrompt = e;
+      // The event may fire after PWAInstall().setup() has already run
+      if (typeof hasPrompt === 'function') hasPrompt();
     });
 
     function promptInstall(){
@@ -81,6 +83,13 @@ Before calling the `promptInstall_()` method, you can check if the Install Promp
 - [x] The `beforeinstallprompt` event was captured. 
 
 `promptInstall_()` won't do anything if `installPromptEnabled` is false so you should check this flag before attempting to call the prompt.  
+
+The browser can fire `beforeinstallprompt` after `setup()` has already run, so `installPromptEnabled` may turn true later. Set `PWAInstall().onPromptAvailable` (or pass `promptAvailableCallback` to `setup()`) to rebuild your UI when that happens:
+```dart
+PWAInstall().onPromptAvailable = () {
+  if (mounted) setState(() {});
+};
+```
 
 ## 4. Call PWAInstall().promptInstall_()
 Finally, call `PWAInstall().promptInstall_()` to show the install prompt.

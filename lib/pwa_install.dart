@@ -38,6 +38,7 @@ external void hasPrompt();
 void setHasPrompt() {
   debugPrint('Browser has install prompt');
   PWAInstall().hasPrompt = true;
+  PWAInstall().onPromptAvailable?.call();
 }
 
 /// Function that gets called from JavaScript when the app is installed as a PWA
@@ -84,6 +85,10 @@ class PWAInstall {
   /// An optional callback that will be fired when the user installs your app as a PWA from the install prompt
   Function? onAppInstalled;
 
+  /// An optional callback that will be fired when the browser's install prompt becomes available
+  /// The beforeinstallprompt event can arrive after [setup] has run, so use this to rebuild your UI
+  Function? onPromptAvailable;
+
   /// installPromptEnabled will be true if the app was not already launched as a PWA or TWA and
   /// the browser prompted the user to install the app already. The browser needs to have presented the
   /// prompt because we are capturing that event and reusing it
@@ -100,8 +105,12 @@ class PWAInstall {
     }
   }
 
-  void setup({Function? installCallback}) {
+  void setup({Function? installCallback, Function? promptAvailableCallback}) {
     if (!kIsWeb) return;
+
+    if (promptAvailableCallback != null) {
+      onPromptAvailable = promptAvailableCallback;
+    }
 
     // JavaScript code may now call `appLaunchedAsPWA()` or `window.appLaunchedAsPWA()`.
     appLaunchedAsPWA = setLaunchModePWA.toJS;

@@ -42,6 +42,8 @@
 
     window.addEventListener('beforeinstallprompt', (e) => {
       deferredPrompt = e;
+      // The event may fire after PWAInstall().setup() has already run
+      if (typeof hasPrompt === 'function') hasPrompt();
     });
 
     // Listen for app install event

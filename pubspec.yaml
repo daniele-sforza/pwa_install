@@ -1,10 +1,10 @@
 name: pwa_install
 description: A Flutter package that allows you to prompt mobile web users to install your Flutter app as a PWA
-version: 0.0.6
+version: 0.0.7
 homepage: https://github.com/jtmuller5/pwa_install
 
 environment:
-  sdk: ">=3.0.0 <4.0.0"
+  sdk: ">=3.3.0 <4.0.0"
 
 dependencies:
   flutter:

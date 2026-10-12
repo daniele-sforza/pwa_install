@@ -34,6 +34,20 @@ class _HomeViewState extends State<HomeView> {
   String? error;
 
   @override
+  void initState() {
+    super.initState();
+    PWAInstall().onPromptAvailable = () {
+      if (mounted) setState(() {});
+    };
+  }
+
+  @override
+  void dispose() {
+    PWAInstall().onPromptAvailable = null;
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
         body: Center(

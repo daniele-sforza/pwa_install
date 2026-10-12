@@ -11,8 +11,8 @@ dependencies:
     sdk: flutter
 
   flutter_lints: ^5.0.0
-  pwa_install:
-    path: ./../../pwa_install
+  pwa_install_wasm:
+    path: ../
 
 dev_dependencies:
   flutter_test:

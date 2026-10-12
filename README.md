@@ -1,6 +1,11 @@
 [formatting]: https://docs.github.com/en/get-started/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax
 
-# PWA Install
+# PWA Install (WASM)
+> `pwa_install_wasm` is a fork of [pwa_install](https://pub.dev/packages/pwa_install) by Joseph Muller, migrated to `dart:js_interop` so it also works when your app is built with `flutter build web --wasm`. The API is the same; only the package name and import change:
+> ```dart
+> import 'package:pwa_install_wasm/pwa_install_wasm.dart';
+> ```
+
 A small Flutter package that allows you to prompt mobile web users to install your Flutter app as a [progressive web application](https://en.wikipedia.org/wiki/Progressive_web_app#:~:text=As%20of%202021%2C%20PWA%20features,not%20by%20Firefox%20for%20desktop.) (PWA) on demand.
 
 A very basic example can be found here: [PWA Install](https://pwa-install-c5c83.web.app/#/)

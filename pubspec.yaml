@@ -1,7 +1,7 @@
-name: pwa_install
-description: A Flutter package that allows you to prompt mobile web users to install your Flutter app as a PWA
-version: 0.0.7
-homepage: https://github.com/jtmuller5/pwa_install
+name: pwa_install_wasm
+description: Prompt web users to install your Flutter app as a PWA. A WASM-compatible fork of pwa_install, built on dart:js_interop.
+version: 0.1.0
+homepage: https://github.com/daniele-sforza/pwa_install/tree/pwa_install_wasm
 
 environment:
   sdk: ">=3.3.0 <4.0.0"

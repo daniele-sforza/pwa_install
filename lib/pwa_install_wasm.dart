@@ -1,7 +1,7 @@
 library;
 
 import 'package:flutter/foundation.dart';
-import 'package:pwa_install/js_stub.dart'
+import 'package:pwa_install_wasm/js_stub.dart'
     if (dart.library.js_interop) 'dart:js_interop';
 
 /// Functions that are called from JavaScript

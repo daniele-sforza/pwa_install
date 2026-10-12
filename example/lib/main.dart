@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:pwa_install/pwa_install.dart';
+import 'package:pwa_install_wasm/pwa_install_wasm.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();

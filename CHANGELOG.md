@@ -9,6 +9,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Changed
 - Homepage now points to the repository root
 - Removed the original author's donation links from the README
+### Fixed
+- Missing return type on the `allowInterop` stub, flagged by pub.dev static analysis
 
 ## [0.1.0]
 ### 2026-10-12

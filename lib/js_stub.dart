@@ -13,6 +13,6 @@ extension JSFunctionExtension on Function {
   JSFunction get toJS => throw UnimplementedError();
 }
 
-allowInterop<F extends Function>(F f) {
+F allowInterop<F extends Function>(F f) {
   throw UnimplementedError();
 }

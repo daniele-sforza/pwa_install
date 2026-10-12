@@ -18,7 +18,7 @@ When a Flutter app is opened in a supported browser, the user will see an instal
 
 | Mobile Prompt | Web Prompt|
 |:-------------------------:|:-------------------------:|
-|![img.png](https://raw.githubusercontent.com/jtmuller5/pwa_install/main/images/install_prompt_mobile.png) | ![img.png](https://raw.githubusercontent.com/jtmuller5/pwa_install/main/images/install_prompt_web.png)|
+|![img.png](https://raw.githubusercontent.com/daniele-sforza/pwa_install/main/images/install_prompt_mobile.png) | ![img.png](https://raw.githubusercontent.com/daniele-sforza/pwa_install/main/images/install_prompt_web.png)|
 
 This is awesome, but there's a caveat. The browser will only show the install prompt to users the first time they open your app. If the user refreshes the page or returns to the app while it's still in their browser history, the prompt will not be shown.
 
@@ -103,21 +103,21 @@ Finally, call `PWAInstall().promptInstall_()` to show the install prompt.
 ## App Name
 You can change the app name that's displayed in the prompt by updating the "name" field in web/manifest.json.
 
-![img.png](https://raw.githubusercontent.com/jtmuller5/pwa_install/main/images/install_prompt_app_name.png)
+![img.png](https://raw.githubusercontent.com/daniele-sforza/pwa_install/main/images/install_prompt_app_name.png)
 
 ## App Logo
 The logo displayed in the prompt also comes from the web/manifest.json file.
 1. (Optional) Use a website like [favicon.io](https://favicon.io/) to generate your web icons
 2. Add your logos to the web/icons folder
 
-![img.png](https://raw.githubusercontent.com/jtmuller5/pwa_install/main/images/web_icons.png)
+![img.png](https://raw.githubusercontent.com/daniele-sforza/pwa_install/main/images/web_icons.png)
 
 3. Add the following lines to the <head> tag in index.html:
 ```aidl
 <link rel="icon" type="image/png" sizes="32x32" href="/icons/favicon-32x32.png">
 <link rel="icon" type="image/png" sizes="16x16" href="/icons/favicon-16x16.png">
 ```
-![img.png](https://raw.githubusercontent.com/jtmuller5/pwa_install/main/images/install_prompt_app_logo.png)
+![img.png](https://raw.githubusercontent.com/daniele-sforza/pwa_install/main/images/install_prompt_app_logo.png)
 
 ## Screenshots
 In addition to the name and logo, you can also add optional [screenshots to the manifest.json file](https://web.dev/learn/pwa/web-app-manifest/#promotional-fields). 
@@ -131,7 +131,7 @@ In addition to the name and logo, you can also add optional [screenshots to the 
 ```
 
 Note that the screenshots will not appear in every browser. After they are added, your new install prompt will look like this:
-![images](https://raw.githubusercontent.com/jtmuller5/pwa_install/main/images/app_screenshots.jpg)
+![images](https://raw.githubusercontent.com/daniele-sforza/pwa_install/main/images/app_screenshots.jpg)
 
 # Troubleshooting
 ## Supported Browsers
